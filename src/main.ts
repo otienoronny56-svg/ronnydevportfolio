@@ -12,7 +12,9 @@ import {
   Database, 
   Layout, 
   PenTool, 
-  Cpu 
+  Cpu,
+  Layers,
+  Globe
 } from 'lucide'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -25,6 +27,7 @@ const init = () => {
   renderContent()
   setupScrollEffects()
   setupMobileMenu()
+  setupProjectTabs()
 }
 
 // --- Theme Logic ---
@@ -61,7 +64,7 @@ const updateThemeIcon = (theme: string) => {
 const renderContent = () => {
   // Use createIcons for existing tech icons
   createIcons({
-    icons: { ExternalLink, Code2, Database, Layout, PenTool, Cpu, Menu, X }
+    icons: { ExternalLink, Code2, Database, Layout, PenTool, Cpu, Menu, X, Layers, Globe }
   });
 }
 
@@ -130,6 +133,34 @@ const setupScrollEffects = () => {
     } else {
       nav?.classList.remove('scrolled')
     }
+  })
+}
+
+const setupProjectTabs = () => {
+  const tabBtns = document.querySelectorAll('.tab-btn')
+  const coreGrid = document.getElementById('core-systems')
+  const corporateGrid = document.getElementById('corporate-systems')
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      tabBtns.forEach(b => b.classList.remove('active'))
+      btn.classList.add('active')
+
+      // Switch grids
+      const category = btn.getAttribute('data-category')
+      if (category === 'core') {
+        coreGrid?.classList.remove('hidden')
+        coreGrid?.classList.add('visible')
+        corporateGrid?.classList.add('hidden')
+        corporateGrid?.classList.remove('visible')
+      } else {
+        corporateGrid?.classList.remove('hidden')
+        corporateGrid?.classList.add('visible')
+        coreGrid?.classList.add('hidden')
+        coreGrid?.classList.remove('visible')
+      }
+    })
   })
 }
 
