@@ -209,31 +209,30 @@ nav.scrolled {
 
 @media (max-width: 1024px) {
   .hamburger {
-    display: block;
+    display: block !important;
   }
 
   .nav-links {
+    display: none; /* Forcefully hide by default on mobile */
     position: fixed;
     top: 0;
-    right: -100%;
-    width: 70%;
+    right: 0;
+    width: 80%;
     height: 100vh;
     background: var(--bg-primary);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: 0.4s ease-in-out;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     z-index: 1500;
   }
 
   .nav-links.active {
-    right: 0;
+    display: flex; /* Only show when triggered */
   }
-
+  
   .nav-links a {
     font-size: 1.5rem;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
   }
 }
 
