@@ -1,17 +1,17 @@
 import './style.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { 
-  createIcons, 
-  Sun, 
-  Moon, 
+import {
+  createIcons,
+  Sun,
+  Moon,
   Menu,
   X,
-  ExternalLink, 
-  Code2, 
-  Database, 
-  Layout, 
-  PenTool, 
+  ExternalLink,
+  Code2,
+  Database,
+  Layout,
+  PenTool,
   Cpu,
   Layers,
   Globe
@@ -36,7 +36,7 @@ const setupTheme = () => {
   const toggle = document.querySelector('.theme-toggle')
   const body = document.body
   const savedTheme = localStorage.getItem('theme') || 'dark'
-  
+
   body.setAttribute('data-theme', savedTheme)
   updateThemeIcon(savedTheme)
 
@@ -74,23 +74,23 @@ const setupAnimations = () => {
   // Hero Entrance
   const tl = gsap.timeline()
   tl.from('.hero-title', {
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    ease: 'power4.out'
-  })
-  .from('.hero-subtitle', {
-    y: 20,
+    y: 60,
     opacity: 0,
     duration: 0.8,
-    ease: 'power3.out'
-  }, '-=0.5')
-  .from('.hero-cta', {
-    scale: 0.8,
-    opacity: 0,
-    duration: 0.5,
-    ease: 'back.out(1.7)'
-  }, '-=0.3')
+    ease: 'expo.out'
+  })
+    .from('.hero-subtitle', {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, '-=0.4')
+    .from('.hero-cta', {
+      scale: 0.8,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'back.out(1.7)'
+    }, '-=0.3')
 
   // Reveal Sections on Scroll
   gsap.utils.toArray<HTMLElement>('section').forEach(section => {
@@ -100,10 +100,10 @@ const setupAnimations = () => {
         start: 'top 80%',
         toggleActions: 'play none none none'
       },
-      y: 50,
+      y: 30,
       opacity: 0,
-      duration: 1,
-      ease: 'power3.out'
+      duration: 0.7,
+      ease: 'power4.out'
     })
   })
 }
@@ -140,6 +140,26 @@ const setupProjectTabs = () => {
   const tabBtns = document.querySelectorAll('.tab-btn')
   const coreGrid = document.getElementById('core-systems')
   const corporateGrid = document.getElementById('corporate-systems')
+  const heroBtn = document.getElementById('hero-view-systems')
+
+  const switchTab = (category: string) => {
+    if (category === 'core') {
+      coreGrid?.classList.remove('hidden')
+      coreGrid?.classList.add('visible')
+      corporateGrid?.classList.add('hidden')
+      corporateGrid?.classList.remove('visible')
+    } else {
+      corporateGrid?.classList.remove('hidden')
+      corporateGrid?.classList.add('visible')
+      coreGrid?.classList.add('hidden')
+      coreGrid?.classList.remove('visible')
+    }
+  }
+
+  heroBtn?.addEventListener('click', () => {
+    const corporateTab = document.querySelector('.tab-btn[data-category="corporate"]') as HTMLElement
+    corporateTab?.click()
+  })
 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -160,6 +180,45 @@ const setupProjectTabs = () => {
         coreGrid?.classList.add('hidden')
         coreGrid?.classList.remove('visible')
       }
+    })
+  })
+}
+
+const setupCardTilt = () => {
+  // Disable on touch devices for smoother mobile scrolling
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return
+
+  const cards = gsap.utils.toArray<HTMLElement>('.glass, .contact-link')
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+
+      const rotateX = (y - centerY) / 12
+      const rotateY = (centerX - x) / 12
+
+      gsap.to(card, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        duration: 0.5,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      })
+    })
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      })
     })
   })
 }
