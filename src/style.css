@@ -10,8 +10,8 @@
   --accent-emerald: #50fa7b;
   --border-glass: rgba(255, 255, 255, 0.1);
   --glass-bg: rgba(255, 255, 255, 0.03);
-  --font-heading: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive;
-  --font-body: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive;
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --letter-spacing-tight: -0.01em;
   --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -125,6 +125,21 @@ h1, h2, h3, h4 {
 
 .animate-in {
   animation: fadeIn 0.8s forwards;
+}
+
+/* Responsive About Grid */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
 
 /* Navbar */
@@ -492,14 +507,17 @@ section {
     padding: 25px 5%; /* Even tighter section padding */
   }
   
-  /* About section mobile reorder */
   #about .glass {
-    display: flex !important;
-    flex-direction: column !important;
+    display: block !important;
   }
   
+  .about-grid {
+    display: block !important;
+  }
+
   .about-content {
     order: 1;
+    margin-top: 2rem;
   }
   
   .about-image {
