@@ -28,6 +28,7 @@ const init = () => {
   setupScrollEffects()
   setupMobileMenu()
   setupProjectTabs()
+  setupCardTilt()
 }
 
 // --- Theme Logic ---
