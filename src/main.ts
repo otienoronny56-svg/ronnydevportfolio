@@ -142,12 +142,6 @@ const setupProjectTabs = () => {
   const corporateGrid = document.getElementById('corporate-systems')
   const heroBtn = document.getElementById('hero-view-systems')
 
-const setupProjectTabs = () => {
-  const tabBtns = document.querySelectorAll('.tab-btn')
-  const coreGrid = document.getElementById('core-systems')
-  const corporateGrid = document.getElementById('corporate-systems')
-  const heroBtn = document.getElementById('hero-view-systems')
-
   heroBtn?.addEventListener('click', () => {
     const corporateTab = document.querySelector('.tab-btn[data-category="corporate"]') as HTMLElement
     corporateTab?.click()
