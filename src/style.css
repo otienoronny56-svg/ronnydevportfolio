@@ -10,8 +10,8 @@
   --accent-emerald: #50fa7b;
   --border-glass: rgba(255, 255, 255, 0.1);
   --glass-bg: rgba(255, 255, 255, 0.03);
-  --font-heading: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive;
+  --font-body: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive;
   --letter-spacing-tight: -0.01em;
   --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
