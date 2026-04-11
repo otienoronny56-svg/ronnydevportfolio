@@ -207,7 +207,7 @@ nav.scrolled {
   height: 24px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hamburger {
     display: block;
   }
@@ -546,28 +546,39 @@ section {
   .bento-lg, .bento-md { grid-column: span 1; grid-row: span 1; }
   
   .academic-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 1.5rem;
   }
 
-  .bento-item h3 {
-    font-size: 1rem;
+  .academic-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-glass);
   }
 
-  nav {
-    padding: 0.75rem 3%; /* More whitespace on edges */
+  .academic-item:last-child {
+    border-bottom: none;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   .logo {
     font-size: 0.9rem;
+    letter-spacing: 1px;
   }
-  .section-tag {
-    font-size: 0.6rem;
+  .logo span {
+    display: block;
+    font-size: 0.7rem;
+    opacity: 0.6;
   }
   .hero-title {
     font-size: 1.8rem;
+    line-height: 1.1;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+  .section-tag {
+    font-size: 0.6rem;
   }
 }
 
