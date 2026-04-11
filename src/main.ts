@@ -142,19 +142,11 @@ const setupProjectTabs = () => {
   const corporateGrid = document.getElementById('corporate-systems')
   const heroBtn = document.getElementById('hero-view-systems')
 
-  const switchTab = (category: string) => {
-    if (category === 'core') {
-      coreGrid?.classList.remove('hidden')
-      coreGrid?.classList.add('visible')
-      corporateGrid?.classList.add('hidden')
-      corporateGrid?.classList.remove('visible')
-    } else {
-      corporateGrid?.classList.remove('hidden')
-      corporateGrid?.classList.add('visible')
-      coreGrid?.classList.add('hidden')
-      coreGrid?.classList.remove('visible')
-    }
-  }
+const setupProjectTabs = () => {
+  const tabBtns = document.querySelectorAll('.tab-btn')
+  const coreGrid = document.getElementById('core-systems')
+  const corporateGrid = document.getElementById('corporate-systems')
+  const heroBtn = document.getElementById('hero-view-systems')
 
   heroBtn?.addEventListener('click', () => {
     const corporateTab = document.querySelector('.tab-btn[data-category="corporate"]') as HTMLElement
@@ -186,15 +178,16 @@ const setupProjectTabs = () => {
 
 const setupCardTilt = () => {
   // Disable on touch devices for smoother mobile scrolling
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return
+  if (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) return
 
   const cards = gsap.utils.toArray<HTMLElement>('.glass, .contact-link')
 
   cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
+    card.addEventListener('mousemove', (e: Event) => {
+      const mouseEvent = e as MouseEvent
       const rect = card.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
+      const x = mouseEvent.clientX - rect.left
+      const y = mouseEvent.clientY - rect.top
 
       const centerX = rect.width / 2
       const centerY = rect.height / 2
